@@ -2,7 +2,6 @@ import logging
 
 from django.db import transaction
 
-from .models import Task
 from .task import SerialTask, TaskFunc
 from .backends import backend
 
@@ -11,6 +10,7 @@ logger = logging.getLogger('cq')
 
 
 def run_task(message):
+    from .models import Task
     try:
         task_id = message['task_id']
     except (TypeError, KeyError):
@@ -33,6 +33,7 @@ def run_task(message):
 
 
 def _do_run_task(task_func, task):
+    from .models import Task
     try:
         result = task.start(pre_start=False)
     except Exception as err:
