@@ -12,9 +12,9 @@ class TaskViewSet(viewsets.ModelViewSet):
     def get_serializer(self, data=None, *args, **kwargs):
         if getattr(self, 'creating', False):
             return CreateTaskSerializer(data=data)
-        return super().get_serializer(data, *args, **kwargs)
+        return super(TaskViewSet, self).get_serializer(data, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         self.creating = True
         with transaction.atomic():
-            return super().create(request, *args, **kwargs)
+            return super(TaskViewSet, self).create(request, *args, **kwargs)

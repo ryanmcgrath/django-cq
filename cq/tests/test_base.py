@@ -29,11 +29,11 @@ User = get_user_model()
 
 class SilentMixin(object):
     def setUp(self):
-        super().setUp()
+        super(SilentMixin, self).setUp()
         logging.disable(logging.CRITICAL)
 
     def tearDown(self):
-        super().tearDown()
+        super(SilentMixin, self).tearDown()
         logging.disable(logging.NOTSET)
 
 

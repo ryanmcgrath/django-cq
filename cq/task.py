@@ -170,13 +170,13 @@ class SerialTask(object):
 
 class FuncNameWidget(forms.TextInput):
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super(FuncNameWidget, self).__init__(*args, **kwargs)
         self._name = 'func_name'
         self._list = sorted(list(TaskFunc.task_table.keys()))
         self.attrs.update({'list': 'list__%s' % self._name})
 
     def render(self, name, value, attrs=None):
-        text_html = super().render(name, value, attrs=attrs)
+        text_html = super(FuncNameWidget, self).render(name, value, attrs=attrs)
         data_list = '<datalist id="list__%s">' % self._name
         for item in self._list:
             data_list += '<option value="%s">' % item

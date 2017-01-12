@@ -4,7 +4,7 @@ from channels.management.commands.runworker import Command as BaseCommand
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
-        super().add_arguments(parser)
+        super(Command, self).add_arguments(parser)
         parser.add_argument(
             '--web-threads', action='store',
             type=int, help='Number of threads to execute.'
@@ -30,4 +30,4 @@ class Command(BaseCommand):
                     options['thread_only_channels'] = []
                 for ii in range(web_threads):
                     options['thread_only_channels'].append('%d,http.*' % ii)
-        super().handle(*args, **options)
+        super(Command, self).handle(*args, **options)
